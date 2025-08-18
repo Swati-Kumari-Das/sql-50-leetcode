@@ -66,9 +66,28 @@ ON p.product_id = s.product_id
 
 **Solution:** 
 
-SELECT v.customer_id, COUNT(*) AS count_no_trans
+SELECT v.customer_id, COUNT(v.visit_id) AS count_no_trans
 FROM Visits v
 LEFT JOIN Transactions t ON v.visit_id = t.visit_id
 WHERE t.transaction_id IS NULL
 GROUP BY v.customer_id;
+
+## 9.  Rising Temperature
+
+**Solution:** 
+
+-- SELECT W1.id
+-- FROM Weather W1, Weather W2 
+-- WHERE DATEDIFF(W1.recordDate, W2.recordDate) = 1
+-- AND W1.temperature > W2.temperature;
+
+
+**Solution:** 
+
+SELECT W1.id
+FROM Weather W1
+JOIN Weather W2 
+  ON  SUBDATE(W1.recordDate,1) =  W2.recordDate
+WHERE W1.temperature > W2.temperature;
+
 
