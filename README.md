@@ -30,3 +30,18 @@ WHERE referee_id != 2
    OR referee_id IS NULL;
 
 
+## 3. Big Countries
+
+**Solution:** 
+
+select name,population,area from world where area >=3000000 ||  population>=25000000;
+
+## 4. Article Views I
+**Solution:** 
+
+select distinct author_id as id from views where author_id=viewer_id order by author_id;
+
+## Invalid Tweets
+**Solution:** 
+
+select tweet_id from Tweets where length(content)>15;
