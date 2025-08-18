@@ -63,3 +63,12 @@ JOIN Product p
 ON p.product_id = s.product_id
 
 ## 8. Customer Who Visited but Did Not Make Any Transactions
+
+**Solution:** 
+
+SELECT v.customer_id, COUNT(*) AS count_no_trans
+FROM Visits v
+LEFT JOIN Transactions t ON v.visit_id = t.visit_id
+WHERE t.transaction_id IS NULL
+GROUP BY v.customer_id;
+
