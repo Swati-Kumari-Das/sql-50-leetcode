@@ -19,7 +19,11 @@ WHERE low_fats = 'Y'
 ## 2. Find Customer Referee (584)
 **Problem:**  
 Find the names of customers who are **not referred by customer with id = 2**.
+
+
 **Solution:**
+
+
 SELECT name 
 FROM Customer 
 WHERE referee_id != 2 
