@@ -41,7 +41,25 @@ select name,population,area from world where area >=3000000 ||  population>=2500
 
 select distinct author_id as id from views where author_id=viewer_id order by author_id;
 
-## Invalid Tweets
+## 5. Invalid Tweets
 **Solution:** 
 
 select tweet_id from Tweets where length(content)>15;
+
+## 6. Replace Employee ID With The Unique Identifier
+
+**Solution:** 
+SELECT u.unique_id, e.name
+FROM Employees e
+LEFT JOIN EmployeeUNI u
+ON e.id = u.id;
+
+## 7. Product Sales Analysis I
+
+
+**Solution:** 
+SELECT product_name, s.year, s.price from Sales s 
+JOIN Product p 
+ON p.product_id = s.product_id
+
+## 8. Customer Who Visited but Did Not Make Any Transactions
