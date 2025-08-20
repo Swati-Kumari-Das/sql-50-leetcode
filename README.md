@@ -120,6 +120,7 @@ where b.bonus < 1000 or b.bonus is null;
 
 **Solution:** 
 
+```sql
 
 select s.student_id, s.student_name, sub.subject_name,
 count(e.subject_name) as attended_exams
