@@ -135,3 +135,30 @@ order by s.student_id, s.student_name ;
 
 ```
 
+## 13. Managers with at Least 5 Direct Reports
+
+**Solution:** 
+```sql
+
+select e1.name
+from employee e1
+inner join employee e2
+on e1.id= e2.managerId
+group by e2.managerid
+having count(e2.managerid)>=5
+
+```
+
+
+## 14. Confirmation Rate
+
+**Solution:** 
+```sql
+select s.user_id,
+-- round(avg(if(c.action='confirmed',1,0)),2) as confirmation_rate
+ifnull(round(sum(c.action='confirmed')/count(*),2),0.00) as confirmation_rate
+from Signups s
+left join Confirmations c
+on s.user_id =c.user_id
+group by s.user_id
+```
