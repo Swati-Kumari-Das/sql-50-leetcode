@@ -183,3 +183,61 @@ on p.product_id=u.product_id
 and u.purchase_date between p.start_date and p.end_date
 group by p.product_id
 ```
+
+## 17. Project Employees I
+
+**Solution:** 
+```sql
+SELECT p.project_id,
+       ROUND(AVG(e.experience_years), 2) AS average_years
+FROM Project p
+LEFT JOIN Employee e
+       ON p.employee_id = e.employee_id
+GROUP BY p.project_id;
+
+```
+
+## 18.  Percentage of Users Attended a Contest
+
+
+**Solution:** 
+```sql
+select contest_id ,
+round(count(distinct user_id)*100 / (select count(user_id) from users),2) as percentage
+from Register
+group by contest_id
+order by percentage desc, contest_id asc;
+```
+
+## 19.  Queries Quality and Percentage
+
+
+**Solution:** 
+
+```sql
+
+select 
+query_name ,
+round(avg(rating/position),2) as quality,
+round(avg(if(rating <3,1,0)*100),2) as poor_query_percentage
+from queries
+where query_name is not null
+group by query_name
+```
+
+## 20. Monthly Transactions I
+
+**Solution:** 
+
+```sql
+select 
+date_format(trans_date,"%Y-%m") as month,
+country ,
+count(id) as trans_count,
+sum(if(state='approved',1,0)) as approved_count,
+sum(amount) as trans_total_amount,
+sum(if(state='approved',amount,0)) as approved_total_amount
+from transactions
+group by month,country
+
+```
