@@ -94,6 +94,7 @@ WHERE W1.temperature > W2.temperature;
 
 **Solution:** 
 
+```sql
 select a1.machine_id,round(avg(a2.timestamp - a1.timestamp),3) as processing_time from activity a1
 join activity a2
 on a1.machine_id = a2.machine_id
