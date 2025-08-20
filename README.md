@@ -104,7 +104,7 @@ and a1.activity_type='start'
 and a2.activity_type='end'
 group by a1.machine_id
 
-
+```
 
 ## 11. Employee Bonus
 
@@ -132,4 +132,6 @@ on s.student_id = e.student_id
 and e.subject_name = sub.subject_name
 group by s.student_id, s.student_name, sub.subject_name
 order by s.student_id, s.student_name ;
+
+```
 
