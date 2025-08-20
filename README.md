@@ -90,4 +90,44 @@ JOIN Weather W2
   ON  SUBDATE(W1.recordDate,1) =  W2.recordDate
 WHERE W1.temperature > W2.temperature;
 
+## 10.  Average Time of Process per Machine
+
+**Solution:** 
+
+select a1.machine_id,round(avg(a2.timestamp - a1.timestamp),3) as processing_time from activity a1
+join activity a2
+on a1.machine_id = a2.machine_id
+and a1.process_id= a2.process_id
+-- and a1.timestamp< a2.timestamp
+and a1.activity_type='start'
+and a2.activity_type='end'
+group by a1.machine_id
+
+
+
+## 11. Employee Bonus
+
+**Solution:** 
+
+select e.name, b.bonus
+from employee e
+left join bonus b
+ on e.empId = b.empId
+where b.bonus < 1000 or b.bonus is null;
+
+
+## 12.  Students and Examinations
+
+**Solution:** 
+
+
+select s.student_id, s.student_name, sub.subject_name,
+count(e.subject_name) as attended_exams
+from Students s
+cross join Subjects sub
+left join Examinations e
+on s.student_id = e.student_id
+and e.subject_name = sub.subject_name
+group by s.student_id, s.student_name, sub.subject_name
+order by s.student_id, s.student_name ;
 
