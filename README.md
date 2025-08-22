@@ -282,3 +282,36 @@ from activity) as new_table
 
 
 ```
+
+## 23. User Activity for the Past 30 Days I
+
+
+**Solution:** 
+
+```sql
+
+select teacher_id ,count(distinct subject_id) as cnt from Teacher group by teacher_id;
+```
+
+## 24.  User Activity for the Past 30 Days I
+**Solution:** 
+
+```sql
+select activity_date as day ,
+count(distinct user_id) as active_users
+from Activity
+where activity_date between date_sub('2019-07-27' , interval 29 day) and '2019-07-27'
+group by day
+```
+
+## 25. Product Sales Analysis III
+**Solution:** 
+
+```sql
+select 
+product_id,
+year  as first_year, quantity, price
+from sales
+where ((product_id, year) IN (select product_id, min(year) from sales
+group by product_id));
+```
