@@ -338,3 +338,25 @@ HAVING
 ```sql
 select distinct(user_id) , count(follower_id) as followers_count from Followers group by user_id order by user_id;
 ```
+
+## 28. Biggest Single Number
+**Solution:** 
+
+```sql
+SELECT MAX(num) AS num
+FROM (
+    SELECT num
+    FROM MyNumbers
+    GROUP BY num
+    HAVING COUNT(num) = 1
+) AS unique_numbers;
+
+```
+## 29. Customers Who Bought All Products
+**Solution:** 
+
+```sql
+select customer_id from customer 
+group by customer_id 
+having count(distinct product_key)=(select count(product_key) from product)
+```
