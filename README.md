@@ -315,3 +315,26 @@ from sales
 where ((product_id, year) IN (select product_id, min(year) from sales
 group by product_id));
 ```
+## 26. Classes With at Least 5 Students
+
+**Solution:** 
+
+```sql
+SELECT
+    class
+FROM
+    Courses
+-- Group the rows by class to count students in each class
+GROUP BY
+    class
+-- Filter the groups to only include classes with 5 or more students
+HAVING
+    COUNT(student) >= 5;
+```
+
+## 27. Find Followers Count
+**Solution:** 
+
+```sql
+select distinct(user_id) , count(follower_id) as followers_count from Followers group by user_id order by user_id;
+```
