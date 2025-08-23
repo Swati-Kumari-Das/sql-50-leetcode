@@ -360,3 +360,25 @@ select customer_id from customer
 group by customer_id 
 having count(distinct product_key)=(select count(product_key) from product)
 ```
+
+## 30.  The Number of Employees Which Report to Each Employee
+**Solution:** 
+
+```sql
+SELECT
+    E1.employee_id,
+    E1.name,
+    COUNT(E2.employee_id) AS reports_count,
+    ROUND(AVG(E2.age)) AS average_age
+FROM
+    Employees E1
+JOIN
+    Employees E2
+    ON E2.reports_to = E1.employee_id
+GROUP BY
+    E1.employee_id,
+    E1.name
+ORDER BY
+    E1.employee_id;
+
+```
