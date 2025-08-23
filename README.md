@@ -376,8 +376,7 @@ JOIN
     Employees E2
     ON E2.reports_to = E1.employee_id
 GROUP BY
-    E1.employee_id,
-    E1.name
+    E1.employee_id
 ORDER BY
     E1.employee_id;
 
