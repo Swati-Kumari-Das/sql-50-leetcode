@@ -469,3 +469,19 @@ where (product_id) not IN
 
 
 ```
+
+## 35.   Last Person to Fit in the Bus
+
+**Solution:** 
+```sql
+
+select q1.person_name 
+from Queue q1 
+inner join 
+Queue q2 
+on q1.turn>=q2.turn
+group by q1.turn
+having sum(q2.weight)<=1000
+order by q1.turn desc limit 1;
+
+```
