@@ -383,9 +383,24 @@ ORDER BY
 ```
 
 ## 31.  Primary Department for Each Employee
-**Solution:** 
+**Solution1:** 
 
 ```sql
+
+select employee_id, department_id
+from employee
+where primary_flag='Y'
+group by employee_id
+Union
+select employee_id, department_id
+from employee
+group by employee_id
+having count(employee_id)=1
+ ```
+**Solution2:** 
+
+```sql
+  
 SELECT employee_id, department_id
 FROM Employee
 WHERE primary_flag = 'Y'
@@ -395,4 +410,7 @@ WHERE primary_flag = 'Y'
        GROUP BY employee_id
        HAVING COUNT(*) = 1
    );
+
+
+
 ```
