@@ -504,3 +504,28 @@ from accounts
 
 ```
 
+## 37. Employees Whose Manager Left the Company
+
+**Solution:** 
+```sql
+SELECT employee_id
+FROM Employees
+WHERE salary < 30000
+AND manager_id NOT IN (
+  SELECT employee_id FROM Employees
+)
+ORDER BY employee_id;
+
+```
+## 38.  Exchange Seats
+
+**Solution:** 
+```sql
+select 
+case 
+when id=(select max(id) from seat) and id%2=1 then id
+when id%2=1 then id+1 else id-1 end as id,
+student 
+from seat
+order by id
+```
