@@ -621,3 +621,22 @@ left join department d
 on e.departmentId=d.id) temp
 where ranks<=3 ;
 ```
+
+## 44. Fix Names in a Table
+**Solution:** 
+```sql
+select user_id,
+concat(upper(left(name,1)),
+lower(right(name, length(name)-1))) as name
+from users
+order by user_id
+```
+## 45.  Patients With a Condition
+**Solution:** 
+```sql
+select *
+from patients
+where conditions like 'DIAB1%'
+or conditions like '% DIAB1%';
+
+```
