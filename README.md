@@ -640,3 +640,56 @@ where conditions like 'DIAB1%'
 or conditions like '% DIAB1%';
 
 ```
+
+## 46. Delete Duplicate Emails
+**Solution:** 
+```sql
+
+delete p1 
+from person p1 , person p2
+where p1.email=p2.email
+and p1.id > p2.id
+
+```
+
+## 47.  Second Highest Salary
+**Solution:** 
+```sql
+select max(salary) as SecondHighestSalary
+from Employee
+where salary not in (select max(salary) from Employee)
+
+```
+
+## 48. Group Sold Products By The Date
+**Solution:** 
+```sql
+select sell_date , count(distinct product)as num_sold,
+GROUP_CONCAT(distinct product order by product separator ',') as products
+from Activities
+group by sell_date
+order by sell_date
+ ```
+
+## 49. List the Products Ordered in a Period
+**Solution:** 
+```sql
+select p.product_name,
+sum(o.unit) as unit
+from products p
+left join orders o
+on p.product_id= o.product_id
+where extract(year_month from o.order_date)=
+202002
+group by o.product_id
+having sum(o.unit) >=100
+```
+ ## 50. Find Users With Valid E-Mails
+ **Solution:** 
+```sql
+SELECT *
+FROM
+  Users
+WHERE
+  REGEXP_LIKE(mail, '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode\\.com$', 'c')
+```
